@@ -1,4 +1,4 @@
-nodejs(){
+func_nodejs(){
 
 log=/tmp/roboshop.log
 echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
