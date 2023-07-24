@@ -12,5 +12,5 @@ npm install
 systemctl enable user
 systemctl start user
 yum install mongodb-org-shell -y
-mongo --host monogodb.devops-tools.online </app/schema/user.js
+mongo --host 172.31.88.180 </app/schema/user.js
 systemctl restart user
