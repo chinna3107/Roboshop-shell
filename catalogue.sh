@@ -12,6 +12,8 @@ yum install nodejs -y
 
 echo -e "e\[36m<<<< creating roboshop user account <<<<<\e[0m"
 useradd roboshop
+echo -e "e\[36m<<<< Remove App folder  <<<<<\e[0m"
+rm -rf /app
 
 echo -e "e\[36m<<<< create app folder <<<<<\e[0m"
 mkdir /app
