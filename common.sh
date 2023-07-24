@@ -36,7 +36,7 @@ echo -e "\e[36m<<<< Install Mongo client  >>>>\e[0m" | tee -a ${log}
 yum install mongodb-org-shell -y &>>${log}
 
 echo -e "\e[36m<<<<   Load Application content >>>>\e[0m" | tee -a ${log}
-mongo --host 172.31.95.239 </app/schema/${component}.js &>>${log}
+mongo --host mongodb.devops-tools.online </app/schema/${component}.js &>>${log}
 
 echo -e "\e[36m<<<< Start ${component} service  >>>>\e[0m" | tee -a ${log}
 systemctl daemon-reload &>>${log}
