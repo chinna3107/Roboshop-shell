@@ -1,4 +1,4 @@
 component=user
-source=common.sh
+source common.sh
 
 nodejs
