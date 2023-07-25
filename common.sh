@@ -52,8 +52,6 @@ mongo --host mongodb.devops-tools.online </app/schema/${component}.js &>>${log}
 func_systemd
 
 }
-func_java{
-}
 
 
 
