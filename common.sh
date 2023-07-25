@@ -1,4 +1,4 @@
-Func_apppreq() {
+func_apppreq() {
 echo -e "\e[36m<<<< creating roboshop user account >>>>\e[0m" | tee -a ${log}
 useradd roboshop &>>${log}
 echo -e "\e[36m<<<< Remove App folder  >>>>\e[0m" | tee -a ${log}
