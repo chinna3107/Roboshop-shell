@@ -119,3 +119,17 @@ mysql -h mysql.devops-tools.online -uroot -pRoboShop@1 < /app/schema/shipping.sq
 
 }
 
+func_payment() {
+log=/tmp/roboshop.log
+cp payment.service /etc/systemd/system/payment.service &>>${log}
+
+yum install python36 gcc python3-devel -y &>>${log}
+
+func_apppreq
+
+cd /app &>>${log}
+pip3.6 install -r requirements.txt &>>${log}
+
+func_systemd
+
+}
