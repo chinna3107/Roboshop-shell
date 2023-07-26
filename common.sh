@@ -100,3 +100,22 @@ func_systemd
 
 }
 
+func_shipping() {
+  log=/tmp/roboshop.log
+  echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
+  cp ${component}.service  /etc/systemd/system/${component}.service &>>${log}
+
+yum install maven -y &>>${log}
+
+  func_apppreq
+
+cd /app &>>${log}
+mvn clean package &>>${log}
+mv target/shipping-1.0.jar shipping.jar &>>${log}
+
+func_systemd
+yum install mysql -y &>>${log}
+mysql -h mysql.devops-tools.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>${log}
+
+}
+
