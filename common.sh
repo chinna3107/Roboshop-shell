@@ -78,7 +78,7 @@ func_nodejs
 
 func_apppreq
 
-func_mongodbclient
+func_mongoclient
 
 }
 
