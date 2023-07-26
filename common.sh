@@ -26,7 +26,7 @@ systemctl restart ${component} &>>${log}
 }
 
 #NodeJS Creation
-Func_nodejs() {
+func_nodejs() {
 echo -e "\e[36m<<<< installing nodejs repo >>>>\e[0m" | tee -a ${log}
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 
