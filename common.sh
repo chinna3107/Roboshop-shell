@@ -120,8 +120,9 @@ mysql -h mysql.devops-tools.online -uroot -pRoboShop@1 < /app/schema/shipping.sq
 }
 
 func_payment() {
-log=/tmp/roboshop.log
-cp payment.service /etc/systemd/system/payment.service &>>${log}
+  log=/tmp/roboshop.log
+  echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
+  cp ${component}.service  /etc/systemd/system/${component}.service &>>${log}
 
 yum install python36 gcc python3-devel -y &>>${log}
 
@@ -132,4 +133,21 @@ pip3.6 install -r requirements.txt &>>${log}
 
 func_systemd
 
+}
+
+func_dispatch() {
+  log=/tmp/roboshop.log
+  echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
+  cp ${component}.service  /etc/systemd/system/${component}.service &>>${log}
+
+  yum install golang -y &>>{log}
+
+  func_apppreq
+
+  cd /app &>>{log}
+  go mod init dispatch &>>{log}
+  go get &>>{log}
+  go build &>>{log}
+
+func_systemd
 }
