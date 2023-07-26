@@ -26,7 +26,7 @@ systemctl restart ${component} &>>${log}
 }
 
 #NodeJS Creation
-Func_nodejs(){
+Func_nodejs() {
 echo -e "\e[36m<<<< installing nodejs repo >>>>\e[0m" | tee -a ${log}
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 
@@ -47,7 +47,7 @@ mongo --host mongodb.devops-tools.online </app/schema/${component}.js &>>${log}
 }
 
 #Catalogue Creation
-func_catalogue(){
+func_catalogue() {
 
 log=/tmp/roboshop.log
 echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
@@ -65,7 +65,7 @@ func_mongoclient
 func_systemd
 }
 
-func_user(){
+func_user() {
 
 log=/tmp/roboshop.log
 echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
