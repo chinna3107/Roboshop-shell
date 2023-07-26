@@ -1,4 +1,4 @@
 component=cart
 source common.sh
 
-func_Cart
+func_cart
