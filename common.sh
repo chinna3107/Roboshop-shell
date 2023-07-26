@@ -32,9 +32,6 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 
 echo -e "\e[36m<<<< Installing nodejs >>>>\e[0m" | tee -a ${log}
 yum install nodejs -y &>>/tmp/roboshop.log
-
-echo -e "\e[36m<<<< Download NodeJs Dependencies  >>>>\e[0m" | tee -a ${log}
-npm install &>>${log}
 }
 
 func_mongoclient() {
@@ -58,6 +55,9 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
 
 func_nodejs
 
+echo -e "\e[36m<<<< Download NodeJs Dependencies  >>>>\e[0m" | tee -a ${log}
+npm install &>>${log}
+
 func_apppreq
 
 func_mongoclient
@@ -76,10 +76,29 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
 
 func_nodejs
 
+echo -e "\e[36m<<<< Download NodeJs Dependencies  >>>>\e[0m" | tee -a ${log}
+npm install &>>${log}
+
 func_apppreq
+
 
 func_mongoclient
 
 }
 
+func_Cart() {
+
+log=/tmp/roboshop.log
+echo -e "\e[36m<<<< creating ${component} >>>>>\e[0m" | tee -a ${log}
+cp ${component}.service  /etc/systemd/system/${component}.service &>>${log}
+
+func_nodejs
+
+func_apppreq
+
+func_systemd
+
+
+
+}
 
