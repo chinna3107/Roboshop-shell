@@ -15,6 +15,7 @@ echo -e "\e[36m<<<< Extracting application content  >>>>\e[0m" | tee -a ${log}
 cd /app &>>${log}
 unzip /tmp/${component}.zip &>>${log}
 cd /app &>>${log}
+
 }
 
 #Services start
@@ -31,15 +32,17 @@ echo -e "\e[36m<<<< installing nodejs repo >>>>\e[0m" | tee -a ${log}
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 
 echo -e "\e[36m<<<< Installing nodejs >>>>\e[0m" | tee -a ${log}
-yum install nodejs -y &>>/tmp/roboshop.log
+yum install nodejs -y &>>${log}
 }
 
 func_mongoclient() {
+#if [ "{schema_type}" == "mongodb" ]; then
 echo -e "\e[36m<<<< Install Mongo client  >>>>\e[0m" | tee -a ${log}
 yum install mongodb-org-shell -y &>>${log}
 
 echo -e "\e[36m<<<<   Load Application schema >>>>\e[0m" | tee -a ${log}
 mongo --host mongodb.devops-tools.online </app/schema/${component}.js &>>${log}
+#fi
 
 }
 
@@ -55,14 +58,16 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
 
 func_nodejs
 
+func_apppreq
+
 echo -e "\e[36m<<<< Download NodeJs Dependencies  >>>>\e[0m" | tee -a ${log}
 npm install &>>${log}
 
-func_apppreq
+func_systemd
 
 func_mongoclient
 
-func_systemd
+
 }
 
 func_user() {
@@ -76,13 +81,14 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
 
 func_nodejs
 
+func_apppreq
+
 echo -e "\e[36m<<<< Download NodeJs Dependencies  >>>>\e[0m" | tee -a ${log}
 npm install &>>${log}
 
-func_apppreq
-
-
 func_mongoclient
+
+func_systemd
 
 }
 
