@@ -1,4 +1,4 @@
-log==/tmp/roboshop.log
+log=/tmp/roboshop.log
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>${log}
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>${log}
 yum install rabbitmq-server -y &>>${log}
