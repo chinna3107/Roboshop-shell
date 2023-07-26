@@ -1,4 +1,4 @@
-log= /tmp/roboshop.log
+log=/tmp/roboshop.log
 yum install nginx -y &>>${log}
 cp nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log}
 systemctl enable nginx &>>${log}
